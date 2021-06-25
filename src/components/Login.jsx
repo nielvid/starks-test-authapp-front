@@ -8,6 +8,7 @@ import Input from './Input.jsx';
 import User from '../icons/user.svg';
 import '../scss/components/form.scss';
 import { ReactComponent as Google } from '../icons/google.svg';
+import LoginWithGoogle from './LoginWithGoogle.jsx';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -31,20 +32,22 @@ export default function Login() {
         <div className="ss-h2-wrap"><h2 className="sa-h2">Login</h2></div>
         <div className="social">
           <h4>Login with your google accout</h4>
-          <a href="/">
+          <LoginWithGoogle />
+          {/* <a href="/">
             <div className="google">
 
               <Google width="20%" />
               <span> Google</span>
             </div>
 
-          </a>
+          </a> */}
         </div>
         <div>
           <hr />
           <h3> Or</h3>
 
         </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
 
           <Input type="text" name="email" placeholder="age" {...register('email')} required />
