@@ -1,0 +1,38 @@
+@import './partials/colors';
+
+$fluid: 100%;
+$spaced: 95%;
+$half: 60%;
+$quarter: 26%;
+$mobile: 10% auto;
+$desktop: 5% auto;
+
+.container {
+    width: $spaced;
+    margin: $mobile;
+    background: $white;
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+}
+
+@media (min-width: 420px) {
+}
+
+/************* START OF MOBILE LANDSCAPE */
+@media (min-width: 568px) {
+    .container {
+        width: $half;
+    }
+}
+@media (min-width: 640px) {
+    .container {
+        width: $half;
+    }
+}
+/************* END OF MOBILE LANDSCAPE */
+@media (min-width: 768px) {
+    .container {
+        width: $quarter;
+        margin: $desktop;
+    }
+}

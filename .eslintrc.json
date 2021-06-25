@@ -28,11 +28,16 @@
         "@typescript-eslint/no-use-before-define": [
             "error"
         ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "react/button-has-type": "off",
         "react/jsx-filename-extension": [
             "warn",
             {
                 "extensions": [
-                    ".tsx"
+                    ".tsx",
+                    "jsx"
                 ]
             }
         ],
