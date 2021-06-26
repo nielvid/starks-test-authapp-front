@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { AuthState } from '../../state/store.js';
 
 export default function PrivatePages({ children, path, exact }) {
-  const Authstate = 'abc';
+  const authstate = useContext(AuthState);
 
-  if (Authstate !== 'abd') {
+  if (!authstate) {
     return <Redirect to="/" />;
   }
 

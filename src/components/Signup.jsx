@@ -7,16 +7,18 @@ import Button from './Button';
 import Input from './Input.jsx';
 import User from '../icons/user.svg';
 import '../scss/components/form.scss';
-import { ReactComponent as Google } from '../icons/google.svg';
+import LoginWithGoogle from './LoginWithGoogle.jsx';
+import { signup } from '../queries/axios.config.js';
 
 export default function Signup() {
   const history = useHistory();
 
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
-      console.log(data);
+      const res = await signup(data);
+      console.log(res);
       toast.success('Sign up Sucessful');
       history.push('/');
     } catch (error) {
@@ -32,19 +34,12 @@ export default function Signup() {
         </div>
         <div className="ss-h2-wrap"><h2 className="sa-h2">Sign up</h2></div>
         <div className="social">
-          <h4>Sign up with your google accout</h4>
-          <a href="/">
-            <div className="google">
-              <Google width="20%" />
-              <span> Google</span>
-            </div>
-
-          </a>
+          <LoginWithGoogle buttonText="Sign up with Google" />
         </div>
         <div>
           <hr />
           <h3> Or</h3>
-
+          <p>Use your Email and Password</p>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
 
