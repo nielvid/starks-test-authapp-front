@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import '../scss/components/form.scss';
 
-export default function Input(props) {
+export default function Input(props:any) {
   const {
     type, placeholder, name, value, onChange, className,
   } = props;

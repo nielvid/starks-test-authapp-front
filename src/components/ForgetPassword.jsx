@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import Input from './Input.jsx';
+import Input from './Input';
 import '../scss/components/Password.scss';
 
 const ForgetPassword = () => {

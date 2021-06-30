@@ -9,6 +9,7 @@ const LoginWithGoogle = ({ buttonText }) => {
     const { profileObj } = response;
     try {
       const res = await googleLogin(profileObj);
+      console.log(res);
       toast.success('Login Sucessful');
     } catch (error) {
       toast.error('Login failed');

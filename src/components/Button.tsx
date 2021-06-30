@@ -1,15 +1,25 @@
 import React from 'react';
 
 type props={
-    children: string
-    type: undefined
+    children: any
+
+    type: 'submit' | 'button' | 'reset'
 
 }
 
-export default function Button({ type, children, ...rest }: props): JSX.Element {
+export default function Button({
+  type, children, ...rest
+}: props): JSX.Element {
   return (
     <>
-      <button type={type} {...rest} className="btn">{children}</button>
+      <button type={type} {...rest} className="btn">
+
+        {children}
+      </button>
     </>
   );
 }
+
+// Button.defaultProps = {
+//   type: 'submit',
+// };

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Button from './Button';
-import Input from './Input.jsx';
+import Input from './Input';
 import User from '../icons/user.svg';
 import '../scss/components/form.scss';
 // import { ReactComponent as Google } from '../icons/google.svg';
@@ -12,22 +12,30 @@ import LoginWithGoogle from './LoginWithGoogle.jsx';
 import { login } from '../queries/axios.config.js';
 import { AuthState } from '../state/store.js';
 
+type values = {
+data: Record<string, unknown>
+}
 export default function Login() {
   const history = useHistory();
+  const [loading, setstate] = useState(false);
 
   const { dispatch } = useContext(AuthState);
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: values) => {
     try {
+      setstate(true);
       const res = await login(data);
       console.log(res);
+
       dispatch({ type: 'LOGIN', payload: res?.data });
       toast.success('Login Sucessful');
+      setstate(false);
       history.push('/home');
     } catch (error) {
       console.log(error);
       toast.error('Login failed');
+      setstate(false);
     }
   };
 
@@ -50,10 +58,15 @@ export default function Login() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-          <Input type="text" name="email" placeholder="age" {...register('email')} required />
+          <Input type="text" placeholder="age" {...register('email')} required />
           <br />
-          <Input type="password" name="password" placeholder="Password" {...register('password')} required />
-          <div className="bth-wrap"><Button type="submit">Submit</Button></div>
+          <Input type="password" placeholder="Password" {...register('password')} required />
+          <div className="bth-wrap">
+            <Button type="submit">
+              {!loading ? <span>Submit</span> : <span>loading...</span>}
+
+            </Button>
+          </div>
           {/* <Input type="submit" className="submit" /> */}
         </form>
         <div className="password-reset">

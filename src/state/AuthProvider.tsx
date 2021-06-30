@@ -1,9 +1,9 @@
-import { AES, enc } from 'crypto-js';
+import { AES } from 'crypto-js';
 import React, { useReducer, useEffect } from 'react';
 import { AuthState } from './store.js';
 import { Reducer, initialstate } from './reducers.js';
 
-const AuthProvider = ({ children }) => {
+const AuthProvider : React.FC<{children: any}> = ({ children }) => {
   const [authstate, dispatch] = useReducer(Reducer, initialstate);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     } else {
       const ciphertext = AES.encrypt(
         JSON.stringify(authstate),
-        process.env.REACT_APP_AUTH_KEY,
+        'djdjdj',
       ).toString();
 
       localStorage.setItem('auth', ciphertext);

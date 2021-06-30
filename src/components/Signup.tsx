@@ -4,18 +4,22 @@ import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Button from './Button';
-import Input from './Input.jsx';
+import Input from './Input';
 import User from '../icons/user.svg';
 import '../scss/components/form.scss';
 import LoginWithGoogle from './LoginWithGoogle.jsx';
 import { signup } from '../queries/axios.config.js';
+
+type values = {
+data: Record<string, unknown>
+}
 
 export default function Signup() {
   const history = useHistory();
 
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data:values) => {
     try {
       const res = await signup(data);
       console.log(res);
@@ -43,9 +47,9 @@ export default function Signup() {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
 
-          <Input type="text" name="email" placeholder="age" {...register('email')} required />
+          <Input type="text" placeholder="age" {...register('email')} required />
           <br />
-          <Input type="password" name="password" placeholder="Password" {...register('password')} required />
+          <Input type="password" placeholder="Password" {...register('password')} required />
           <div className="bth-wrap"><Button type="submit">Submit</Button></div>
           {/* <Input type="submit" className="submit" /> */}
 
